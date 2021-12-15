@@ -48,17 +48,28 @@ func calcMode(arr: [Int]) -> Int {
 }
 
 // Read the contents of a file and convert it into an integer array
-let text = try String(contentsOfFile: "/home/ubuntu/environment/files/set1.txt")
-let strArr = text.components(separatedBy: "\n")
 
-var intArr = [Int]()
-for index in 0..<strArr.count {
-	intArr.append(Int(strArr[index])!)
-}
+	let text = try String(contentsOfFile: "/home/ubuntu/environment/files/Unit1-06/set3.txt")
+	let strArr = text.components(separatedBy: "\n")
 
-intArr.sort()
+	var intArr = [Int]()
+	for index in 0..<strArr.count {
 
-// Display the results
-print("The Mean of the numbers in set1.txt is \(calcMean(arr: intArr))")
-print("The Median of the numbers in set1.txt is \(calcMedian(arr: intArr))")
-print("The Mode of the numbers in set1.txt is \(calcMode(arr: intArr))")
+		// Checks if each element can be cast into an Int
+		if let element = Int(strArr[index]) {
+			intArr.append(element)
+			
+			// Calls each function and displays the result for each
+			if intArr.count == strArr.count {
+				intArr.sort()
+
+        			// Display the results
+        			print("The Mean of the numbers in set1.txt is \(calcMean(arr: intArr))")
+        			print("The Median of the numbers in set1.txt is \(calcMedian(arr: intArr))")
+        			print("The Mode of the numbers in set1.txt is \(calcMode(arr: intArr))")
+			}
+		} else {
+			print("This file contains an invalid value.")
+			break
+		}
+	}
